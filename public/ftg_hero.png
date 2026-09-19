@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="1000" height="600">
+  <defs>
+    <radialGradient id="bg-radial" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="80%" stop-color="#fdfefe"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </radialGradient>
+    <radialGradient id="puffin-belly" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#eef2f6"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </radialGradient>
+    <linearGradient id="beak-red" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff4b2b"/>
+      <stop offset="100%" stop-color="#ff416c"/>
+    </linearGradient>
+    <linearGradient id="beak-gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="shirt-purple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6d28d9"/>
+      <stop offset="50%" stop-color="#581c87"/>
+      <stop offset="100%" stop-color="#3b0764"/>
+    </linearGradient>
+    <linearGradient id="rainbow-heart" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EF4444"/>
+      <stop offset="25%" stop-color="#F59E0B"/>
+      <stop offset="50%" stop-color="#10B981"/>
+      <stop offset="75%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <linearGradient id="wood-grain" x1="0" y1="0" x2="1" y2="0.3">
+      <stop offset="0%" stop-color="#5c2813"/>
+      <stop offset="30%" stop-color="#421d0d"/>
+      <stop offset="60%" stop-color="#5c2813"/>
+      <stop offset="100%" stop-color="#381507"/>
+    </linearGradient>
+    <linearGradient id="gold-coin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FDE68A"/>
+      <stop offset="40%" stop-color="#F59E0B"/>
+      <stop offset="70%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#78350F"/>
+    </linearGradient>
+    <pattern id="camo" width="30" height="30" patternUnits="userSpaceOnUse">
+      <rect width="30" height="30" fill="#657551"/>
+      <path d="M0 0 Q 15 5 15 15 Q 15 25 30 30 L 30 0 Z" fill="#414d34"/>
+      <circle cx="8" cy="18" r="6" fill="#85785c"/>
+      <circle cx="22" cy="8" r="5" fill="#2f3825"/>
+    </pattern>
+    <filter id="soft-shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-opacity="0.22" flood-color="#0f172a"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="600" fill="url(#bg-radial)"/>
+
+  <!-- Floor Shadow -->
+  <ellipse cx="490" cy="540" rx="240" ry="26" fill="#94a3b8" opacity="0.35" filter="url(#soft-shadow)"/>
+  <ellipse cx="710" cy="540" rx="90" ry="18" fill="#94a3b8" opacity="0.4" filter="url(#soft-shadow)"/>
+
+  <!-- PUFFIN FIGURE -->
+  <g transform="translate(80, 0)">
+    <!-- Left Wing (Behind Body) -->
+    <path d="M330 290 C 270 340 250 430 280 480 C 290 440 310 380 340 340 Z" fill="#1e293b"/>
+
+    <!-- Feet with Camouflage Rubber Boots -->
+    <!-- Left Boot -->
+    <g transform="translate(350, 440)">
+      <path d="M10 0 L32 0 L32 65 C32 75 25 80 0 82 C-15 82 -25 80 -25 70 C-25 65 -15 62 -10 60 L-10 0 Z" fill="url(#camo)" stroke="#2d3748" stroke-width="2"/>
+      <path d="M-28 72 L35 72 L35 84 L-28 84 Z" fill="#1f2937" rx="3"/>
+      <path d="M-20 66 Q -5 62 25 64" stroke="#1a202c" stroke-width="2" fill="none"/>
+    </g>
+
+    <!-- Right Boot -->
+    <g transform="translate(440, 440)">
+      <path d="M10 0 L34 0 L38 60 C42 66 52 70 58 72 C60 76 56 82 40 83 L-5 83 C-12 80 -12 70 -5 65 L0 0 Z" fill="url(#camo)" stroke="#2d3748" stroke-width="2"/>
+      <path d="M-8 73 L60 73 L60 85 L-8 85 Z" fill="#1f2937" rx="3"/>
+      <path d="M0 66 Q 25 64 50 68" stroke="#1a202c" stroke-width="2" fill="none"/>
+    </g>
+
+    <!-- Puffin Body (White Chest & Belly) -->
+    <ellipse cx="400" cy="370" rx="88" ry="115" fill="url(#puffin-belly)" stroke="#cbd5e1" stroke-width="2"/>
+
+    <!-- Head & Dark Feathers -->
+    <ellipse cx="400" cy="220" rx="75" ry="82" fill="#0f172a"/>
+    <!-- White Face Patches -->
+    <path d="M345 220 C345 170 380 160 400 160 C420 160 455 170 455 220 C455 255 425 270 400 270 C375 270 345 255 345 220 Z" fill="#f8fafc"/>
+
+    <!-- Eye Markings & Eyes -->
+    <path d="M370 195 L370 185" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+    <path d="M430 195 L430 185" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Eyes -->
+    <ellipse cx="372" cy="205" rx="11" ry="13" fill="#0f172a"/>
+    <ellipse cx="428" cy="205" rx="11" ry="13" fill="#0f172a"/>
+    <circle cx="375" cy="202" r="4" fill="#ffffff"/>
+    <circle cx="431" cy="202" r="4" fill="#ffffff"/>
+    <!-- Eye Triangle Details (Puffin characteristic) -->
+    <polygon points="372,192 366,186 378,186" fill="#3b82f6"/>
+    <polygon points="428,192 422,186 434,186" fill="#3b82f6"/>
+
+    <!-- Atlantic Puffin Colorful Beak -->
+    <g transform="translate(400, 240)">
+      <!-- Beak Base (Yellow/Gold) -->
+      <path d="M-28 -15 Q 0 -22 28 -15 L 20 15 Q 0 25 -20 15 Z" fill="url(#beak-gold)"/>
+      <!-- Beak Main Triangular Tip (Red/Orange) -->
+      <path d="M-18 -18 L 0 32 L 18 -18 Q 0 -24 -18 -18 Z" fill="url(#beak-red)"/>
+      <!-- Beak Grooves & Highlights -->
+      <path d="M-12 -5 Q 0 8 12 -5" stroke="#ffffff" stroke-width="2.5" fill="none" opacity="0.8"/>
+      <path d="M-8 8 Q 0 18 8 8" stroke="#fbbf24" stroke-width="2" fill="none"/>
+    </g>
+
+    <!-- PURPLE T-SHIRT (Fill The Gap for Charity) -->
+    <g id="tshirt">
+      <!-- Main Shirt Body -->
+      <path d="M328 310 C340 300 370 295 400 295 C430 295 460 300 472 310 L485 435 C485 440 470 445 400 445 C330 445 315 440 315 435 Z" fill="url(#shirt-purple)" filter="url(#soft-shadow)"/>
+      
+      <!-- Sleeves -->
+      <path d="M330 310 L285 365 L315 390 L338 345 Z" fill="#4c1d95"/>
+      <path d="M470 310 L525 350 L515 385 L462 345 Z" fill="#4c1d95"/>
+
+      <!-- Neckline -->
+      <path d="M368 296 C380 310 420 310 432 296" stroke="#3b0764" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+      <!-- Rainbow Heart Emblem -->
+      <g transform="translate(400, 365) scale(0.95)">
+        <path d="M 0 -18 C -18 -35 -40 -12 -40 10 C -40 32 0 48 0 48 C 0 48 40 32 40 10 C 40 -12 18 -35 0 -18 Z" fill="url(#rainbow-heart)" stroke="#ffffff" stroke-width="3" filter="url(#soft-shadow)"/>
+        <path d="M 0 -8 C -9 -18 -20 -6 -20 5 C -20 16 0 25 0 25 C 0 25 20 16 20 5 C 20 -6 9 -18 0 -8 Z" fill="#4c1d95"/>
+      </g>
+
+      <!-- Arching Text: FILL THE GAP -->
+      <text x="400" y="332" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="1.5" filter="url(#soft-shadow)">FILL THE GAP</text>
+      <!-- Bottom Text: FOR CHARITY -->
+      <text x="400" y="430" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="900" fill="#fbbf24" text-anchor="middle" letter-spacing="1.2">FOR CHARITY</text>
+    </g>
+
+    <!-- Right Wing (Reaching over to donation box) -->
+    <path d="M495 345 C 540 345 590 355 635 380 C 625 395 595 405 550 395 C 520 390 485 385 470 375 Z" fill="#1e293b" filter="url(#soft-shadow)"/>
+    <!-- Wing Feathers -->
+    <path d="M615 370 C638 376 655 382 645 390 C630 395 605 390 590 385" fill="#0f172a"/>
+
+    <!-- DONATION WOODEN LOCKBOX -->
+    <g transform="translate(540, 360)">
+      <!-- Toonie / Gold Coin resting in slot -->
+      <g transform="translate(85, 20)">
+        <circle cx="0" cy="0" r="26" fill="#94a3b8" stroke="#64748b" stroke-width="2" filter="url(#soft-shadow)"/>
+        <circle cx="0" cy="0" r="17" fill="url(#gold-coin)" stroke="#b45309" stroke-width="1.5"/>
+        <text x="0" y="4" font-family="serif" font-size="10" font-weight="bold" fill="#78350F" text-anchor="middle"></text>
+      </g>
+
+      <!-- Wooden Box Body -->
+      <path d="M20 40 L150 40 L160 170 L10 170 Z" fill="url(#wood-grain)" stroke="#2a0f05" stroke-width="3" filter="url(#soft-shadow)"/>
+      <path d="M10 40 L35 25 L165 25 L150 40 Z" fill="#78350f" stroke="#2a0f05" stroke-width="2"/>
+      <path d="M150 40 L165 25 L175 155 L160 170 Z" fill="#2a0f05"/>
+
+      <!-- Coin Slot -->
+      <ellipse cx="90" cy="33" rx="24" ry="4" fill="#0f172a"/>
+
+      <!-- Brass Latch / Lock -->
+      <rect x="78" y="38" width="24" height="20" rx="3" fill="#f59e0b" stroke="#78350f" stroke-width="1.5"/>
+      <circle cx="90" cy="48" r="3" fill="#78350f"/>
+
+      <!-- Parchment Label on Box -->
+      <rect x="30" y="75" width="110" height="75" rx="6" fill="#fef3c7" stroke="#b45309" stroke-width="2" filter="url(#soft-shadow)"/>
+      <text x="85" y="98" font-family="serif, Georgia, sans-serif" font-size="13" font-weight="bold" fill="#451a03" text-anchor="middle">Fill the Gap</text>
+      <text x="85" y="118" font-family="sans-serif" font-size="11" font-weight="800" fill="#78350f" text-anchor="middle">DONATIONS</text>
+      <text x="85" y="136" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#92400e" text-anchor="middle">Giving Together</text>
+    </g>
+  </g>
+</svg>
