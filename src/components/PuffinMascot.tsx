@@ -12,12 +12,12 @@ export const PuffinMascot: React.FC<PuffinMascotProps> = ({
   alt = 'Fill the Gap Puffin Mascot in Purple T-Shirt with Wooden Donation Box',
   showShadow = true,
 }) => {
-  const [customImg, setCustomImg] = useState<string | null>(() => AdminStore.getCustomMascotImage());
+  const [customImg, setCustomImg] = useState<string | null>(() => AdminStore.getCustomMascotImage() || 'ftg_giving_together.png');
   const [imgFailed, setImgFailed] = useState(false);
 
   useEffect(() => {
     const handleUpdate = () => {
-      setCustomImg(AdminStore.getCustomMascotImage());
+      setCustomImg(AdminStore.getCustomMascotImage() || 'ftg_giving_together.png');
       setImgFailed(false);
     };
     window.addEventListener('ftg_mascot_updated', handleUpdate);
@@ -31,7 +31,18 @@ export const PuffinMascot: React.FC<PuffinMascotProps> = ({
         alt={alt}
         referrerPolicy="no-referrer"
         className={`object-contain select-none ${className}`}
-        onError={() => setImgFailed(true)}
+        onError={(e) => {
+          const target = e.currentTarget;
+          if (!target.dataset.fallbackStep) {
+            target.dataset.fallbackStep = '1';
+            target.src = '/ftg_giving_together.png';
+          } else if (target.dataset.fallbackStep === '1') {
+            target.dataset.fallbackStep = '2';
+            target.src = 'https://lh3.googleusercontent.com/d/17-SUEaE5flB9JVKzys6JmW8sP_c9Z2k_';
+          } else {
+            setImgFailed(true);
+          }
+        }}
       />
     );
   }
