@@ -677,15 +677,26 @@ export const GetInvolvedView: React.FC<GetInvolvedViewProps> = ({
               DONATE
             </h2>
             <p className="text-sm sm:text-base text-slate-100 leading-relaxed font-medium">
-              Financial support helps us conduct community research and develop future frontline support initiatives.
+              Financial support directly powers our startup operations, community listening surveys, and resource directory development in St. John's and across NL. Support our official launch fundraiser on GoFundMe or explore all giving options.
             </p>
           </div>
-          <button
-            onClick={onNavigateToDonate}
-            className="gold-gradient-btn px-8 py-4 rounded-2xl text-[#0f172a] font-black text-xs uppercase tracking-wider border border-amber-200 shrink-0 cursor-pointer shadow-lg"
-          >
-            DONATE
-          </button>
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <a
+              href="https://www.gofundme.com/f/support-fill-the-gap-community-services-launch-fundraiser"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="gold-gradient-btn px-6 py-4 rounded-2xl text-[#0f172a] font-black text-xs uppercase tracking-wider border border-amber-200 cursor-pointer shadow-lg inline-flex items-center gap-1.5"
+            >
+              <span>GoFundMe Fundraiser</span>
+              <ArrowRight className="w-4 h-4 text-[#0f172a]" />
+            </a>
+            <button
+              onClick={onNavigateToDonate}
+              className="px-6 py-4 rounded-2xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs uppercase tracking-wider border border-slate-700 cursor-pointer shadow-md"
+            >
+              All Giving Options
+            </button>
+          </div>
         </section>
 
       </div>

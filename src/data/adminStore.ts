@@ -262,7 +262,10 @@ export interface GoogleIntegrationConfig {
   accountNumber?: string;
   swiftBic?: string;
   bankAddress?: string;
+  goFundMeUrl?: string;
 }
+
+export const GOFUNDME_CAMPAIGN_URL = 'https://www.gofundme.com/f/support-fill-the-gap-community-services-launch-fundraiser';
 
 const DEFAULT_GOOGLE_CONFIG: GoogleIntegrationConfig = {
   communityFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdUbd7uHKfjodSI6qiixViDSO03lpE9fLEEzvqxs5uw9jWgtg/viewform?usp=header',
@@ -287,6 +290,7 @@ const DEFAULT_GOOGLE_CONFIG: GoogleIntegrationConfig = {
   accountNumber: '',
   swiftBic: '',
   bankAddress: 'St. John\'s, NL, Canada',
+  goFundMeUrl: GOFUNDME_CAMPAIGN_URL,
 };
 
 const STORAGE_KEYS = {

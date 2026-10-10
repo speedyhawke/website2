@@ -10,7 +10,9 @@ import {
   ArrowRight,
   ClipboardList,
   Briefcase,
+  ExternalLink,
 } from 'lucide-react';
+import { GOFUNDME_CAMPAIGN_URL } from '../data/adminStore';
 
 interface StJohnsHeroHeaderProps {
   onOpenSurvey: () => void;
@@ -28,12 +30,12 @@ export const StJohnsHeroHeader: React.FC<StJohnsHeroHeaderProps> = ({
   return (
     <div className="relative w-full bg-[#070b12] text-white border-b border-[#E5A93C]/40 shadow-2xl overflow-hidden min-h-[460px] sm:min-h-[520px] flex flex-col justify-between">
       
-      {/* Background St. John's Scenic Battery Houses & Harbour Photography */}
+      {/* Background St. John's Scenic Photography */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <img
           src="scenic_nl.jpg"
-          alt="Scenic St. John's Newfoundland, The Battery colourful houses, Harbour, Hills and Water"
-          className="w-full h-full object-cover object-[center_40%] brightness-105 contrast-105 scale-[1.01] transition-all duration-700"
+          alt="Scenic St. John's Newfoundland City View, Harbour, Hills and Coastal Architecture"
+          className="w-full h-full object-cover object-[center_35%] brightness-105 contrast-105 scale-[1.01] transition-all duration-700"
           loading="eager"
           onError={(e) => {
             const target = e.currentTarget;
@@ -42,10 +44,13 @@ export const StJohnsHeroHeader: React.FC<StJohnsHeroHeaderProps> = ({
               target.src = './scenic_nl.jpg';
             } else if (target.dataset.fallbackStep === '1') {
               target.dataset.fallbackStep = '2';
-              target.src = 'docs/scenic_nl.jpg';
+              target.src = '/scenic_nl.jpg';
             } else if (target.dataset.fallbackStep === '2') {
               target.dataset.fallbackStep = '3';
-              target.src = '/scenic_nl.jpg';
+              target.src = 'docs/scenic_nl.jpg';
+            } else if (target.dataset.fallbackStep === '3') {
+              target.dataset.fallbackStep = '4';
+              target.src = 'https://lh3.googleusercontent.com/d/1ohMOAS4FcwGDp3cTTjnMY6N_xfCXHcbh';
             }
           }}
         />
@@ -56,12 +61,18 @@ export const StJohnsHeroHeader: React.FC<StJohnsHeroHeaderProps> = ({
       {/* Top Bar with Scenic Location Pill */}
       <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 flex items-center justify-start">
         {/* Prestige Regional Pill */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/20 text-[#F3BA4F] text-[11px] sm:text-xs font-bold shadow-lg backdrop-blur-md">
+        <a
+          href="https://drive.google.com/file/d/1ohMOAS4FcwGDp3cTTjnMY6N_xfCXHcbh/view?usp=drive_link"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="View full St. John's city photo"
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 hover:bg-black/80 border border-white/20 hover:border-amber-400/50 text-[#F3BA4F] text-[11px] sm:text-xs font-bold shadow-lg backdrop-blur-md transition-all cursor-pointer group"
+        >
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-          <MapPin className="w-3.5 h-3.5 text-[#E5A93C] shrink-0" />
-          <span className="hidden xs:inline">St. John’s & Newfoundland • The Battery</span>
+          <MapPin className="w-3.5 h-3.5 text-[#E5A93C] shrink-0 group-hover:scale-110 transition-transform" />
+          <span className="hidden xs:inline">St. John’s & Newfoundland • City View</span>
           <span className="xs:hidden">St. John's, NL</span>
-        </div>
+        </a>
       </div>
 
       {/* Main Hero Container with airy spacing to reveal the scenic backdrop */}
@@ -79,6 +90,62 @@ export const StJohnsHeroHeader: React.FC<StJohnsHeroHeaderProps> = ({
           <p className="text-xs sm:text-sm font-semibold text-amber-100 leading-tight drop-shadow-[0_1px_3px_rgba(0,0,0,0.7)]">
             Helping close the gaps between people, community resources, and the support they need.
           </p>
+        </div>
+
+        {/* GoFundMe Launch Fundraiser Banner — Directly Above Need Help & Donate Buttons */}
+        <div className="max-w-3xl mx-auto p-4 sm:p-5 rounded-2xl bg-[#0b0f19]/90 border-2 border-[#E5A93C] shadow-2xl backdrop-blur-md text-left space-y-3 relative overflow-hidden group">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-2.5">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+              <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-[#F3BA4F] flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-[#F3BA4F]" />
+                Official GoFundMe Launch Fundraiser
+              </span>
+            </div>
+            <span className="text-[10px] sm:text-[11px] font-bold text-amber-200 bg-amber-500/20 px-2.5 py-0.5 rounded-full border border-amber-400/40 self-start sm:self-auto">
+              Credit Cards • Apple Pay • Google Pay
+            </span>
+          </div>
+
+          <div className="space-y-1">
+            <h2
+              className="text-sm sm:text-base md:text-lg font-black text-white uppercase tracking-tight"
+              style={{ fontFamily: "'Outfit', sans-serif" }}
+            >
+              Support Fill the Gap Community Services Launch Fundraiser
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-200 font-medium leading-relaxed">
+              We've launched an official fundraiser to power our grassroots launch in St. John's and Newfoundland & Labrador. Your contribution directly funds vital community listening surveys, resource directories, and frontline support for folks falling through the cracks.
+            </p>
+          </div>
+
+          <div className="pt-1 flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center gap-2.5">
+              <a
+                href={GOFUNDME_CAMPAIGN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="gold-gradient-btn px-4 sm:px-5 py-2.5 rounded-xl text-slate-950 font-black text-xs uppercase tracking-wider flex items-center gap-2 shadow-md border border-amber-200 hover:scale-[1.02] active:scale-95 transition-all cursor-pointer"
+              >
+                <Heart className="w-3.5 h-3.5 fill-current text-slate-950" />
+                <span>Donate on GoFundMe</span>
+                <ExternalLink className="w-3.5 h-3.5 text-slate-950 shrink-0" />
+              </a>
+
+              <button
+                type="button"
+                onClick={onNavigateToDonate}
+                className="px-3.5 py-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-amber-300 hover:text-white border border-amber-400/30 text-xs font-bold transition-colors cursor-pointer flex items-center gap-1.5"
+              >
+                <span>All Donation Options</span>
+                <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
+              </button>
+            </div>
+
+            <span className="text-[11px] text-slate-300 font-medium italic hidden md:inline">
+              Secure online giving via GoFundMe
+            </span>
+          </div>
         </div>
 
         {/* Primary Action Buttons */}

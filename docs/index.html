@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="/assets/index.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index.css">
+    <script type="module" crossorigin src="./assets/index-DpLXCLDa.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CR6A4bni.css">
   </head>
   <body class="bg-[#F8FAFC] text-stone-900 antialiased min-h-screen selection:bg-amber-400 selection:text-slate-950 font-sans">
     <div id="root"></div>
@@ -23,14 +23,14 @@
         if (!document.querySelector('link[data-ftg-bundle]')) {
           var link = document.createElement('link');
           link.rel = 'stylesheet';
-          link.href = './assets/index.css';
+          link.href = './assets/index.css?v=' + Date.now();
           link.setAttribute('data-ftg-bundle', 'true');
           document.head.appendChild(link);
         }
         if (!document.querySelector('script[data-ftg-bundle]')) {
           var script = document.createElement('script');
           script.type = 'module';
-          script.src = './assets/index.js';
+          script.src = './assets/index.js?v=' + Date.now();
           script.setAttribute('data-ftg-bundle', 'true');
           document.body.appendChild(script);
         }

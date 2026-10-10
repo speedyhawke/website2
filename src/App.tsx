@@ -124,8 +124,8 @@ export default function App() {
     if (!isAdmin) {
       if (isSurvey || isProfSurvey) {
         tab = 'home';
-      } else if (effectiveRoute === 'what-we-help-with' || effectiveRoute === 'what-we-do') {
-        tab = 'what-we-do';
+      } else if (effectiveRoute === 'what-we-do') {
+        tab = 'what-we-help-with';
       } else {
         tab = effectiveRoute || 'home';
       }
@@ -225,7 +225,7 @@ export default function App() {
 
   // Check if activeTab is a custom CMS page or built-in tab
   const customPage = CMSStore.getPageBySlug(activeTab);
-  const isKnownTab = ['home', 'about', 'what-we-do', 'what-we-help-with', 'need-help', 'professionals', 'why-i-started', 'get-involved', 'donate', 'contact'].includes(activeTab);
+  const isKnownTab = ['home', 'about', 'what-we-help-with', 'need-help', 'professionals', 'why-i-started', 'get-involved', 'donate', 'contact'].includes(activeTab);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-stone-900 selection:bg-amber-300 selection:text-slate-950">
@@ -296,8 +296,7 @@ export default function App() {
             onOpenProfessionalSurvey={() => setIsProfessionalSurveyOpen(true)}
             onNavigateToDonate={() => handleTabChange('donate')}
             onNavigateToGetInvolved={() => handleTabChange('get-involved')}
-            onNavigateToWhatWeDo={() => handleTabChange('what-we-do')}
-            onNavigateToWhatWeHelpWith={() => handleTabChange('what-we-do')}
+            onNavigateToWhatWeHelpWith={() => handleTabChange('what-we-help-with')}
             onNavigateToAbout={() => handleTabChange('about')}
             onNavigateToWhyIStarted={() => handleTabChange('why-i-started')}
             onNavigateToContact={() => handleTabChange('contact')}
@@ -312,7 +311,7 @@ export default function App() {
           />
         )}
 
-        {(activeTab === 'what-we-do' || activeTab === 'what-we-help-with') && (
+        {activeTab === 'what-we-help-with' && (
           <WhatWeHelpWithView
             onOpenSurvey={() => setIsSurveyOpen(true)}
             onOpenProfessionalSurvey={() => setIsProfessionalSurveyOpen(true)}
@@ -389,12 +388,10 @@ export default function App() {
             onOpenProfessionalSurvey={() => setIsProfessionalSurveyOpen(true)}
             onNavigateToDonate={() => handleTabChange('donate')}
             onNavigateToGetInvolved={() => handleTabChange('get-involved')}
-            onNavigateToWhatWeDo={() => handleTabChange('what-we-do')}
-            onNavigateToWhatWeHelpWith={() => handleTabChange('what-we-do')}
+            onNavigateToWhatWeHelpWith={() => handleTabChange('what-we-help-with')}
             onNavigateToAbout={() => handleTabChange('about')}
             onNavigateToWhyIStarted={() => handleTabChange('why-i-started')}
             onNavigateToContact={() => handleTabChange('contact')}
-            onNavigateToNeedHelp={() => handleTabChange('need-help')}
           />
         )}
       </main>

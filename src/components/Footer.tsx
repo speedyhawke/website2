@@ -31,7 +31,7 @@ export const Footer: React.FC<FooterProps> = ({
   const defaultNavLinks: { id: NavTabId; label: string }[] = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
-    { id: 'what-we-do', label: 'What We Do' },
+    { id: 'what-we-help-with', label: 'What We Help With' },
     { id: 'need-help', label: 'Need Help' },
     { id: 'why-i-started', label: 'Why We Started' },
     { id: 'get-involved', label: 'Get Involved' },

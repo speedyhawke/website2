@@ -6,7 +6,6 @@ import { CMSStore, CMSPage } from '../data/cmsStore';
 export type NavTabId =
   | 'home'
   | 'about'
-  | 'what-we-do'
   | 'what-we-help-with'
   | 'need-help'
   | 'why-i-started'
@@ -37,7 +36,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const defaultNavTabs: { id: NavTabId; label: string }[] = [
     { id: 'home', label: 'HOME' },
     { id: 'about', label: 'ABOUT' },
-    { id: 'what-we-do', label: 'WHAT WE DO' },
+    { id: 'what-we-help-with', label: 'WHAT WE HELP WITH' },
     { id: 'need-help', label: 'NEED HELP?' },
     { id: 'why-i-started', label: 'WHY WE STARTED' },
     { id: 'get-involved', label: 'GET INVOLVED' },
@@ -84,7 +83,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="hidden lg:flex items-center gap-0.5 xl:gap-1 bg-black/40 backdrop-blur-md p-1 xl:p-1.5 rounded-2xl border border-white/10 shadow-inner overflow-x-auto no-scrollbar"
           >
             {navTabs.map((tab) => {
-              const isActive = activeTab === tab.id || (tab.id === 'what-we-do' && activeTab === 'what-we-help-with');
+              const isActive = activeTab === tab.id;
               return (
                 <button
                   key={tab.id}
@@ -142,7 +141,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="lg:hidden bg-slate-950 border-t border-slate-800 px-2 py-1.5 overflow-x-auto no-scrollbar">
         <div className="flex items-center gap-1.5 min-w-max px-1">
           {navTabs.map((tab) => {
-            const isActive = activeTab === tab.id || (tab.id === 'what-we-do' && activeTab === 'what-we-help-with');
+            const isActive = activeTab === tab.id;
             return (
               <button
                 key={tab.id}
@@ -165,7 +164,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="lg:hidden bg-[#0B0F19] border-b border-slate-800 px-4 pt-3 pb-6 space-y-2 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-200">
           <div className="grid grid-cols-1 gap-1.5">
             {navTabs.map((tab) => {
-              const isActive = activeTab === tab.id || (tab.id === 'what-we-do' && activeTab === 'what-we-help-with');
+              const isActive = activeTab === tab.id;
               return (
                 <button
                   key={tab.id}

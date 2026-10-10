@@ -1,6 +1,6 @@
 {
-  "name": "Fill the Gap — St. John's, Newfoundland & Labrador",
-  "description": "Helping bridge the gaps between people, resources, and the support they need in St. John's, Newfoundland & Labrador. Community survey, resource navigation, and grassroots listening.",
+  "name": "Remix Fill the Gap Site GoFundMe edition",
+  "description": "Helping bridge the gaps between people, resources, and the support they need in St. John\u0027s, Newfoundland \u0026 Labrador. Community survey, resource navigation, and grassroots listening.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

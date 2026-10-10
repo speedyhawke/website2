@@ -19,11 +19,13 @@ import {
 interface ProfessionalsViewProps {
   onOpenProfessionalSurvey: () => void;
   onNavigateToCommunitySurvey?: () => void;
+  onNavigateToWhatWeDo?: () => void;
 }
 
 export const ProfessionalsView: React.FC<ProfessionalsViewProps> = ({
   onOpenProfessionalSurvey,
   onNavigateToCommunitySurvey,
+  onNavigateToWhatWeDo,
 }) => {
   const recurringPatterns = [
     'Recurring barriers',

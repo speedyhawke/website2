@@ -5,7 +5,7 @@ import {
   Building, Landmark, ArrowRight
 } from 'lucide-react';
 import { PuffinMascot } from './PuffinMascot';
-import { AdminStore } from '../data/adminStore';
+import { AdminStore, GOFUNDME_CAMPAIGN_URL } from '../data/adminStore';
 
 interface DonateViewProps {
   onOpenSurvey: () => void;
@@ -21,13 +21,15 @@ export const DonateView: React.FC<DonateViewProps> = ({
   const [customAmount, setCustomAmount] = useState<string>('');
   const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
   const [copiedAccount, setCopiedAccount] = useState<boolean>(false);
-  const [paymentMethod, setPaymentMethod] = useState<'etransfer' | 'bank' | 'cheque'>('etransfer');
+  const [copiedGoFundMe, setCopiedGoFundMe] = useState<boolean>(false);
+  const [paymentMethod, setPaymentMethod] = useState<'gofundme' | 'etransfer' | 'bank' | 'cheque'>('gofundme');
 
   const amounts = [15, 25, 50, 100, 250];
   const finalAmount = customAmount ? parseFloat(customAmount) || 0 : selectedAmount || 0;
 
   // Retrieve configured Direct Bank & e-Transfer details
   const googleConfig = AdminStore.getGoogleConfig();
+  const goFundMeUrl = googleConfig.goFundMeUrl?.trim() || GOFUNDME_CAMPAIGN_URL;
   const eTransferEmail = googleConfig.eTransferEmail?.trim() || 'info@fillthegapnl.ca';
   const bankName = googleConfig.bankName?.trim() || '';
   const accountHolder = googleConfig.accountHolderName?.trim() || 'Fill the Gap NL';
@@ -36,6 +38,12 @@ export const DonateView: React.FC<DonateViewProps> = ({
   const accountNumber = googleConfig.accountNumber?.trim() || '';
   const swiftBic = googleConfig.swiftBic?.trim() || '';
   const bankAddress = googleConfig.bankAddress?.trim() || 'St. John\'s, NL, Canada';
+
+  const copyGoFundMeLink = () => {
+    navigator.clipboard.writeText(goFundMeUrl);
+    setCopiedGoFundMe(true);
+    setTimeout(() => setCopiedGoFundMe(false), 2500);
+  };
 
   const copyEtransfer = () => {
     navigator.clipboard.writeText(eTransferEmail);
@@ -117,7 +125,111 @@ export const DonateView: React.FC<DonateViewProps> = ({
         </h1>
       </div>
 
-      {/* 2. DIRECT BANK & PAYMENT PROCESSING SYSTEM */}
+      {/* 2. OFFICIAL GOFUNDME LAUNCH FUNDRAISER SPOTLIGHT (TOP OF DONATE PAGE) */}
+      <section className="bg-gradient-to-br from-[#0b0f19] via-[#0f172a] to-[#161c2e] rounded-3xl p-6 sm:p-10 border-2 border-[#E5A93C] shadow-2xl text-white space-y-6 relative overflow-hidden">
+        {/* Subtle accent glow */}
+        <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Header row */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-5">
+          <div className="flex items-center gap-3.5">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#E5A93C] to-[#d4972b] flex items-center justify-center text-slate-950 shadow-lg shadow-amber-500/20 shrink-0">
+              <Heart className="w-6 h-6 fill-current text-slate-950" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-[#F3BA4F] bg-amber-400/15 border border-amber-400/30 px-2.5 py-0.5 rounded-full">
+                  Official Launch Campaign
+                </span>
+                <span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/80 border border-emerald-500/40 px-2 py-0.5 rounded-full flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Live GoFundMe Fundraiser
+                </span>
+              </div>
+              <h2
+                className="text-xl sm:text-2xl lg:text-3xl font-black text-white uppercase tracking-tight mt-1"
+                style={{ fontFamily: "'Outfit', sans-serif" }}
+              >
+                Support Fill the Gap Community Services Launch Fundraiser
+              </h2>
+            </div>
+          </div>
+        </div>
+
+        {/* Description & Overview */}
+        <div className="space-y-3.5 text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+          <p className="text-base font-bold text-white">
+            We’ve officially launched our GoFundMe campaign to help establish and launch Fill the Gap Community Services across St. John's and Newfoundland & Labrador.
+          </p>
+          <p>
+            Starting from the ground up, our mission is to listen closely to community members, identify where existing social and health services fall short, and connect people to real, practical answers.
+          </p>
+          <p className="text-slate-300">
+            Your support directly funds our startup operations: conducting grassroots listening surveys, building comprehensive service directories, publishing community resource guides, and assembling the foundation for direct barrier relief.
+          </p>
+        </div>
+
+        {/* Payment perks pill row */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
+          <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-center space-y-0.5">
+            <span className="text-[11px] font-bold text-amber-300 block">Credit & Debit Cards</span>
+            <span className="text-[10px] text-slate-400">Visa, Mastercard, Amex</span>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-center space-y-0.5">
+            <span className="text-[11px] font-bold text-amber-300 block">Apple Pay & Google Pay</span>
+            <span className="text-[10px] text-slate-400">One-tap mobile checkout</span>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-center space-y-0.5">
+            <span className="text-[11px] font-bold text-amber-300 block">GoFundMe Guarantee</span>
+            <span className="text-[10px] text-slate-400">Protected donor platform</span>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-center space-y-0.5">
+            <span className="text-[11px] font-bold text-amber-300 block">100% NL Focused</span>
+            <span className="text-[10px] text-slate-400">Local grassroots mission</span>
+          </div>
+        </div>
+
+        {/* Quick Link & Direct Action Box */}
+        <div className="pt-2 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-black/60 p-4 sm:p-5 rounded-2xl border border-white/10 shadow-inner">
+          <div className="space-y-1 min-w-0">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
+              Direct Fundraiser Link
+            </span>
+            <a
+              href={goFundMeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs sm:text-sm font-mono font-bold text-amber-300 hover:underline break-all block"
+            >
+              {goFundMeUrl}
+            </a>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+            <a
+              href={goFundMeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="gold-gradient-btn px-5 py-3 rounded-xl text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2 shadow-lg hover:scale-105 active:scale-95 transition-all cursor-pointer"
+            >
+              <Heart className="w-4 h-4 fill-current text-slate-950" />
+              <span>Donate on GoFundMe</span>
+              <ExternalLink className="w-4 h-4 text-slate-950 shrink-0" />
+            </a>
+
+            <button
+              type="button"
+              onClick={copyGoFundMeLink}
+              className="px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold flex items-center gap-2 transition-colors cursor-pointer"
+            >
+              {copiedGoFundMe ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+              <span>{copiedGoFundMe ? 'Link Copied!' : 'Copy Link'}</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. DIRECT BANK & PAYMENT PROCESSING SYSTEM */}
       <section className="bg-[#0b0f19] text-white rounded-3xl p-6 sm:p-10 shadow-2xl border-2 border-[#E5A93C] space-y-8">
         
         {/* Header */}
@@ -223,37 +335,50 @@ export const DonateView: React.FC<DonateViewProps> = ({
         </div>
 
         {/* Payment Method Selector Tabs */}
-        <div className="grid grid-cols-3 gap-2 bg-slate-950 p-1.5 rounded-2xl border border-slate-800">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-slate-950 p-1.5 rounded-2xl border border-slate-800">
+          <button
+            type="button"
+            onClick={() => setPaymentMethod('gofundme')}
+            className={`py-3 px-2 sm:px-3 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+              paymentMethod === 'gofundme'
+                ? 'bg-gradient-to-r from-[#E5A93C] via-[#F3BA4F] to-[#D4972B] text-[#0f172a] shadow-lg'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            <CreditCard className="w-4 h-4" />
+            <span>GoFundMe</span>
+          </button>
+
           <button
             type="button"
             onClick={() => setPaymentMethod('etransfer')}
-            className={`py-3 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer ${
+            className={`py-3 px-2 sm:px-3 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
               paymentMethod === 'etransfer'
                 ? 'bg-gradient-to-r from-[#E5A93C] via-[#F3BA4F] to-[#D4972B] text-[#0f172a] shadow-lg'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
             <Mail className="w-4 h-4" />
-            <span>Interac e-Transfer</span>
+            <span>e-Transfer</span>
           </button>
 
           <button
             type="button"
             onClick={() => setPaymentMethod('bank')}
-            className={`py-3 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer ${
+            className={`py-3 px-2 sm:px-3 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
               paymentMethod === 'bank'
                 ? 'bg-emerald-600 text-white shadow-lg'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
             <Landmark className="w-4 h-4" />
-            <span>Direct Bank Deposit</span>
+            <span>Bank Deposit</span>
           </button>
 
           <button
             type="button"
             onClick={() => setPaymentMethod('cheque')}
-            className={`py-3 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer ${
+            className={`py-3 px-2 sm:px-3 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
               paymentMethod === 'cheque'
                 ? 'bg-slate-800 text-white shadow-lg'
                 : 'text-slate-400 hover:text-white'
@@ -263,6 +388,54 @@ export const DonateView: React.FC<DonateViewProps> = ({
             <span>Cheque / Mail</span>
           </button>
         </div>
+
+        {/* TAB 0: GOFUNDME ONLINE PORTAL */}
+        {paymentMethod === 'gofundme' && (
+          <div className="bg-slate-950 border border-amber-500/30 rounded-2xl p-6 space-y-5">
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">
+                <CreditCard className="w-5 h-5" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-base font-bold text-white">GoFundMe Online Portal (Credit Card, Debit, Apple & Google Pay)</h3>
+                <p className="text-xs text-slate-400 mt-0.5">
+                  The simplest and quickest way to donate online using any Canadian or international card or mobile wallet with donor guarantee.
+                </p>
+              </div>
+            </div>
+
+            <div className="p-4 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-between gap-3 flex-wrap">
+              <div className="min-w-0">
+                <span className="text-[10px] uppercase tracking-wider font-bold text-slate-400 block">
+                  Campaign Title & Destination
+                </span>
+                <span className="text-sm sm:text-base font-bold text-amber-300 block">
+                  Support Fill the Gap Community Services Launch Fundraiser
+                </span>
+                <span className="text-xs font-mono text-slate-400 break-all block mt-0.5">
+                  {goFundMeUrl}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <a
+                  href={goFundMeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2.5 rounded-xl gold-gradient-btn text-slate-950 font-black text-xs uppercase tracking-wider flex items-center gap-2 shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                >
+                  <span>Donate ${finalAmount || 50} on GoFundMe</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-slate-950" />
+                </a>
+              </div>
+            </div>
+
+            <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-xs text-slate-300 space-y-2">
+              <p>• <strong>Selected Amount:</strong> ${finalAmount || 50} CAD ({frequency === 'monthly' ? 'Monthly' : 'One-Time'})</p>
+              <p>• <strong>Accepted Methods:</strong> Visa, Mastercard, American Express, Discover, Apple Pay, Google Pay</p>
+              <p>• <strong>Security:</strong> Encrypted transaction verified by GoFundMe Giving Guarantee</p>
+            </div>
+          </div>
+        )}
 
         {/* TAB 1: INTERAC E-TRANSFER */}
         {paymentMethod === 'etransfer' && (

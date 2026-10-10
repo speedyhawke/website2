@@ -22,7 +22,7 @@ export const Logo: React.FC<LogoProps> = ({
           <img
             src="puffin.jpg"
             alt="Fill the Gap Puffin Mascot"
-            className="h-10 sm:h-12 w-auto max-w-[70px] sm:max-w-[85px] object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-sm"
+            className="h-10 sm:h-12 w-auto max-w-[70px] sm:max-w-[85px] object-contain rounded-xl group-hover:scale-105 transition-transform duration-300 drop-shadow-sm"
             onError={(e) => {
               const target = e.currentTarget;
               if (!target.dataset.fallbackStep) {
@@ -33,7 +33,13 @@ export const Logo: React.FC<LogoProps> = ({
                 target.src = '/puffin.jpg';
               } else if (target.dataset.fallbackStep === '2') {
                 target.dataset.fallbackStep = '3';
-                target.src = 'docs/puffin.jpg';
+                target.src = 'puffin.png';
+              } else if (target.dataset.fallbackStep === '3') {
+                target.dataset.fallbackStep = '4';
+                target.src = './puffin.png';
+              } else if (target.dataset.fallbackStep === '4') {
+                target.dataset.fallbackStep = '5';
+                target.src = 'https://lh3.googleusercontent.com/d/17-SUEaE5flB9JVKzys6JmW8sP_c9Z2k_';
               } else {
                 setImgError(true);
               }

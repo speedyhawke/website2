@@ -18,15 +18,16 @@ import {
   Sparkles,
   Quote,
   Construction,
+  ExternalLink,
 } from 'lucide-react';
 import { StJohnsHeroHeader } from './StJohnsHeroBanner';
+import { GOFUNDME_CAMPAIGN_URL } from '../data/adminStore';
 
 interface HomeViewProps {
   onOpenSurvey: () => void;
   onOpenProfessionalSurvey: () => void;
   onNavigateToDonate: () => void;
   onNavigateToGetInvolved: () => void;
-  onNavigateToWhatWeDo?: () => void;
   onNavigateToWhatWeHelpWith?: () => void;
   onNavigateToAbout: () => void;
   onNavigateToWhyIStarted?: () => void;
@@ -39,7 +40,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
   onOpenProfessionalSurvey,
   onNavigateToDonate,
   onNavigateToGetInvolved,
-  onNavigateToWhatWeDo,
   onNavigateToWhatWeHelpWith,
   onNavigateToWhyIStarted,
   onNavigateToNeedHelp,
@@ -126,13 +126,13 @@ export const HomeView: React.FC<HomeViewProps> = ({
                     <span>Need Help?</span>
                   </button>
                 )}
-                {(onNavigateToWhatWeDo || onNavigateToWhatWeHelpWith) && (
+                {onNavigateToWhatWeHelpWith && (
                   <button
-                    onClick={onNavigateToWhatWeDo || onNavigateToWhatWeHelpWith}
+                    onClick={onNavigateToWhatWeHelpWith}
                     className="px-5 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer flex items-center gap-1.5 shadow-xs"
                   >
                     <Sparkles className="w-3.5 h-3.5 text-[#F3BA4F]" />
-                    <span>What We Do</span>
+                    <span>What We Help With</span>
                   </button>
                 )}
               </div>
@@ -603,8 +603,44 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </p>
           </div>
 
+          {/* GoFundMe Fundraiser Highlight Banner */}
+          <div className="max-w-xl mx-auto p-4 sm:p-5 rounded-2xl bg-[#0b0f19] border-2 border-[#E5A93C] text-left text-white shadow-xl space-y-3">
+            <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-2">
+              <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-[#F3BA4F] flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                GoFundMe Launch Fundraiser
+              </span>
+              <span className="text-[10px] font-bold text-amber-200 bg-amber-500/20 px-2 py-0.5 rounded border border-amber-400/30">
+                Cards & Mobile Pay
+              </span>
+            </div>
+            <div>
+              <h3
+                className="text-sm sm:text-base font-black text-white uppercase"
+                style={{ fontFamily: "'Outfit', sans-serif" }}
+              >
+                Support Fill the Gap Community Services Launch Fundraiser
+              </h3>
+              <p className="text-xs text-slate-300 font-medium leading-relaxed mt-1">
+                Help us establish Fill the Gap in St. John's and across NL. Every contribution directly funds our listening surveys, frontline resource directories, and community startup initiatives.
+              </p>
+            </div>
+            <div className="pt-1 flex flex-wrap items-center gap-2">
+              <a
+                href={GOFUNDME_CAMPAIGN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="gold-gradient-btn px-4 py-2 rounded-xl text-slate-950 font-black text-xs uppercase tracking-wider inline-flex items-center gap-1.5 shadow-md border border-amber-200 hover:scale-105 active:scale-95 transition-transform"
+              >
+                <Heart className="w-3.5 h-3.5 fill-current text-slate-950" />
+                <span>Donate on GoFundMe</span>
+                <ExternalLink className="w-3.5 h-3.5 text-slate-950" />
+              </a>
+            </div>
+          </div>
+
           {/* Action Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             {onNavigateToNeedHelp && (
               <button
                 onClick={onNavigateToNeedHelp}
