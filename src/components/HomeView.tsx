@@ -143,9 +143,27 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <div className="w-full max-w-sm rounded-3xl bg-gradient-to-b from-amber-50 to-white border-2 border-[#E5A93C]/60 p-6 shadow-xl text-center space-y-4 relative group">
                 
                 <div className="relative mx-auto flex items-center justify-center p-2 rounded-2xl bg-white shadow-inner border border-amber-100 overflow-hidden">
-                  <PuffinMascot
+                  <img
+                    src="ftg_giving_together.png"
+                    alt="Fill the Gap Donations - Giving Together Mascot Artwork"
                     className="w-full max-h-72 object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
-                    alt="Fill the Gap Atlantic Puffin Mascot with Toonie and Donation Box"
+                    loading="lazy"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (!target.dataset.fallbackStep) {
+                        target.dataset.fallbackStep = '1';
+                        target.src = '/ftg_giving_together.png';
+                      } else if (target.dataset.fallbackStep === '1') {
+                        target.dataset.fallbackStep = '2';
+                        target.src = './ftg_giving_together.png';
+                      } else if (target.dataset.fallbackStep === '2') {
+                        target.dataset.fallbackStep = '3';
+                        target.src = 'docs/ftg_giving_together.png';
+                      } else if (target.dataset.fallbackStep === '3') {
+                        target.dataset.fallbackStep = '4';
+                        target.src = 'https://lh3.googleusercontent.com/d/17-SUEaE5flB9JVKzys6JmW8sP_c9Z2k_';
+                      }
+                    }}
                   />
                 </div>
 
